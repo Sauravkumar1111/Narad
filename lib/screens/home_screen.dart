@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _openCamera() async {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const CameraScreen()),
+      MaterialPageRoute(builder: (context) => CameraScreen()),
     );
   }
 
@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const NewFeaturesScreen()),
+                MaterialPageRoute(builder: (context) => NewFeaturesScreen()),
               );
             },
             tooltip: 'New Features',
@@ -172,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SurveillanceScreen()),
+                MaterialPageRoute(builder: (context) => SurveillanceScreen()),
               );
             },
             tooltip: 'Surveillance',
@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const CameraConfigScreen()),
+                MaterialPageRoute(builder: (context) => CameraConfigScreen()),
               );
             },
             tooltip: 'Camera Config',
@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                MaterialPageRoute(builder: (context) => SettingsScreen()),
               );
             },
             tooltip: 'Settings',
