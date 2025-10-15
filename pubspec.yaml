@@ -1,0 +1,65 @@
+name: jarvis_app
+description: Jarvis Personal Assistant Mobile App
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # HTTP Client
+  http: ^1.1.0
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.2
+  
+  # Permissions
+  permission_handler: ^11.0.1
+  
+  # Camera & Image
+  camera: ^0.10.5
+  image_picker: ^1.0.4
+  
+  # Speech
+  flutter_tts: ^3.8.5
+  speech_to_text: ^6.6.0
+  record: ^5.0.4
+  
+  # File System
+  path_provider: ^2.1.1
+  
+  # UI Components
+  cupertino_icons: ^1.0.2
+  
+  # Utilities
+  intl: ^0.18.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.7
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/icons/
+    - assets/fonts/
+    - assets/sounds/
+  
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/Roboto-Regular.ttf
+  #       - asset: assets/fonts/Roboto-Bold.ttf
+  #         weight: 700

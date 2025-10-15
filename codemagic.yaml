@@ -1,0 +1,101 @@
+integrations:
+  app_store_connect:
+    jarvis_app_store: # This will be configured in Codemagic UI
+
+workflows:
+  # iOS Build Workflow for Jarvis App
+  ios-build:
+    name: Jarvis iOS Build
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.yourcompany.jarvis
+      groups:
+        - app_store_connect
+      vars:
+        # AI Backend Configuration (Optional - users can configure in app settings)
+        AI_BACKEND_URL: "http://192.168.1.4:8000/api/v1"  # Default backend URL (users can override in app)
+    scripts:
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Get Flutter packages
+        script: |
+          cd "front end/jarvis_app"
+          flutter packages pub get
+      - name: Run Flutter tests
+        script: |
+          cd "front end/jarvis_app"
+          flutter test
+      - name: Install pods
+        script: |
+          cd "front end/jarvis_app/ios"
+          pod install
+      - name: Build iOS
+        script: |
+          cd "front end/jarvis_app"
+          flutter build ios --release --no-codesign
+      - name: Build iOS Archive
+        script: |
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/front end/jarvis_app/ios/Runner.xcworkspace" \
+            --scheme Runner
+    artifacts:
+      - "front end/jarvis_app/build/ios/ipa/*.ipa"
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        beta_groups:
+          - "Beta Testers"
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  # Development Build for iOS
+  ios-dev-build:
+    name: Jarvis iOS Development Build
+    max_build_duration: 45
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      vars:
+        # Development AI Backend (Optional - users can configure in app)
+        AI_BACKEND_URL: "http://192.168.1.4:8000/api/v1"
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd "front end/jarvis_app"
+          flutter packages pub get
+      - name: Run Flutter tests
+        script: |
+          cd "front end/jarvis_app"
+          flutter test
+      - name: Install pods
+        script: |
+          cd "front end/jarvis_app/ios"
+          pod install
+      - name: Build iOS Debug
+        script: |
+          cd "front end/jarvis_app"
+          flutter build ios --debug --no-codesign
+    artifacts:
+      - "front end/jarvis_app/build/ios/iphoneos/*.app"
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
