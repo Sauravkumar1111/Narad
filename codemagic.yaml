@@ -11,11 +11,11 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.yourcompany.jarvis
-      groups:
-        - app_store_connect
+      # ios_signing:
+      #   distribution_type: app_store
+      #   bundle_identifier: com.yourcompany.jarvis
+      # groups:
+      #   - app_store_connect
       vars:
         # AI Backend Configuration (Optional - users can configure in app settings)
         AI_BACKEND_URL: "http://192.168.1.4:8000/api/v1"  # Default backend URL (users can override in app)
