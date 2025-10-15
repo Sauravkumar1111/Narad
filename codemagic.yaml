@@ -35,14 +35,14 @@ workflows:
           pod install
       - name: Build iOS
         script: |
-          flutter build ios --release --no-codesign
+          flutter build ios --simulator --no-codesign
       - name: Build iOS Archive
         script: |
           xcode-project build-ipa \
             --workspace "$CM_BUILD_DIR/ios/Runner.xcworkspace" \
             --scheme Runner
     artifacts:
-      - "build/ios/ipa/*.ipa"
+      - "build/ios/iphonesimulator/*.app"
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
@@ -84,9 +84,9 @@ workflows:
           pod install
       - name: Build iOS Debug
         script: |
-          flutter build ios --debug --no-codesign
+          flutter build ios --simulator --debug --no-codesign
     artifacts:
-      - "build/ios/iphoneos/*.app"
+      - "build/ios/iphonesimulator/*.app"
     publishing:
       email:
         recipients:
