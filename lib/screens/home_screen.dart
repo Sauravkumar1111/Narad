@@ -12,6 +12,8 @@ import '../widgets/loader.dart';
 import '../screens/camera_screen.dart';
 import '../screens/surveillance_screen.dart';
 import '../screens/settings_screen.dart';
+import '../screens/new_features_screen.dart';
+import '../screens/camera_config_screen.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
 
