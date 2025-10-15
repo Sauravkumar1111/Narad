@@ -25,27 +25,24 @@ workflows:
           xcode-project use-profiles
       - name: Get Flutter packages
         script: |
-          cd "front end/jarvis_app"
           flutter packages pub get
       - name: Run Flutter tests
         script: |
-          cd "front end/jarvis_app"
           flutter test
       - name: Install pods
         script: |
-          cd "front end/jarvis_app/ios"
+          cd ios
           pod install
       - name: Build iOS
         script: |
-          cd "front end/jarvis_app"
           flutter build ios --release --no-codesign
       - name: Build iOS Archive
         script: |
           xcode-project build-ipa \
-            --workspace "$CM_BUILD_DIR/front end/jarvis_app/ios/Runner.xcworkspace" \
+            --workspace "$CM_BUILD_DIR/ios/Runner.xcworkspace" \
             --scheme Runner
     artifacts:
-      - "front end/jarvis_app/build/ios/ipa/*.ipa"
+      - "build/ios/ipa/*.ipa"
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
@@ -77,22 +74,19 @@ workflows:
     scripts:
       - name: Get Flutter packages
         script: |
-          cd "front end/jarvis_app"
           flutter packages pub get
       - name: Run Flutter tests
         script: |
-          cd "front end/jarvis_app"
           flutter test
       - name: Install pods
         script: |
-          cd "front end/jarvis_app/ios"
+          cd ios
           pod install
       - name: Build iOS Debug
         script: |
-          cd "front end/jarvis_app"
           flutter build ios --debug --no-codesign
     artifacts:
-      - "front end/jarvis_app/build/ios/iphoneos/*.app"
+      - "build/ios/iphoneos/*.app"
     publishing:
       email:
         recipients:
