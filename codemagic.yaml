@@ -50,11 +50,12 @@ workflows:
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
     publishing:
-      app_store_connect:
-        auth: jarvis_app_store
-        submit_to_testflight: true
-        beta_groups:
-          - "Beta Testers"
+      # App Store Connect publishing (commented out for testing)
+      # app_store_connect:
+      #   auth: jarvis_app_store
+      #   submit_to_testflight: true
+      #   beta_groups:
+      #     - "Beta Testers"
       email:
         recipients:
           - your-email@example.com
