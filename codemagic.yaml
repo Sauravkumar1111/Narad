@@ -58,7 +58,7 @@ workflows:
       #     - "Beta Testers"
       email:
         recipients:
-          - your-email@example.com
+          - sauravbittoo8@gmail.com
         notify:
           success: true
           failure: true
@@ -96,7 +96,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - your-email@example.com
+          - sauravbittoo8@gmail.com
         notify:
           success: true
           failure: true
